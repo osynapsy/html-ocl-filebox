@@ -1,0 +1,25 @@
+{
+    "name": "osynapsy/html-ocl-filebox",
+    "version": "0.2",
+    "homepage": "http://www.osynapsy.net/html-ocl-filebox",
+    "type": "library",
+    "description": "Ocl filebox component",
+    "keywords": ["Osynapsy", "Filebox library"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pietro Celeste",
+            "email": "p.celeste@osynapsy.net",
+            "homepage": "https://github.com/osynapsy/html-ocl-filebox/wiki"
+        }
+    ],
+    "require": {
+        "php" : ">=8.0.0",
+        "osynapsy/osynapsy-html2" : "1.*"
+    },
+    "autoload" : {
+        "psr-4": {
+            "Osynapsy\\Ocl\\FileBox\\": "src/"
+        }
+    }
+}
