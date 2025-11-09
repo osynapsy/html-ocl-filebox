@@ -1,0 +1,80 @@
+.ocl-filebox {
+  position: relative;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.ocl-filebox.hover {
+  border-color: #666;
+  background-color: #f9f9f9;
+}
+
+.ocl-filebox input { display: none; }
+
+.ocl-filebox .placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #999;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.ocl-filebox.has-files .placeholder {
+  opacity: 0;
+}
+
+.ocl-filebox .file-list {
+  width: 100%;
+  padding: 5px;
+  z-index: 1;
+  position: relative;
+}
+
+.ocl-filebox .file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3px 5px;
+  padding: 5px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  background: white;
+}
+
+.ocl-filebox .file-item img {
+  max-width: 50px;
+  max-height: 50px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.ocl-filebox .remove-btn {
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+}
+
+.ocl-filebox .add-icon {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none; /* non blocca click */
+}
+
+.ocl-filebox.has-files:hover .add-icon {
+  opacity: 1;
+}
