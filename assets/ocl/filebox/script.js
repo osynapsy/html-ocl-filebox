@@ -7,6 +7,7 @@ class OclFileBox
         this.fileList = this.box.querySelector('.file-list');
         this.filesArray = [];
         this.allowMultiple = this.box.dataset.multiple === "true";
+        this.isEmpty = true;
         this.accept = this.box.dataset.accept || ''; // legge l'attributo data-accept
         // Imposta l’attributo multiple sull’input
         if (this.allowMultiple) {
@@ -117,8 +118,34 @@ class OclFileBox
 
           this.fileList.appendChild(item);
         });
+        
+        this.box.classList.toggle('has-files', this.filesArray.length > 0);
+        this.syncEmptyState();
     }
   
+    syncEmptyState()
+    {
+        const hasFiles = this.filesArray.length > 0;
+
+        if (this.isEmpty && hasFiles) {
+            this.isEmpty = false;
+            this.box.dispatchEvent(new CustomEvent('filebox:nonempty', {
+                bubbles: true,
+                detail: { count: this.filesArray.length }
+            }));
+        }
+
+        if (!this.isEmpty && !hasFiles) {
+            this.isEmpty = true;
+            this.box.dispatchEvent(new CustomEvent('filebox:empty', {
+                bubbles: true
+            }));
+        }
+
+        // opzionale ma utilissimo per CSS / debug
+        this.box.dataset.state = hasFiles ? 'nonempty' : 'empty';
+    }
+
     // Metodo statico per inizializzare tutti i box
     static initialize(selector = '.ocl-filebox')
     {
